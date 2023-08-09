@@ -7,6 +7,9 @@
 }
 
 body {
+    min-height: 100vh;
+    flex-direction: column;
+    display: flex;
     margin: 0;
     overflow-x: hidden;
     background: linear-gradient(8deg, rgba(0, 0, 0, 1) 31%, rgba(101, 11, 86, 1) 100%);
@@ -423,7 +426,7 @@ button:hover {
 }
 
 footer.disclaimer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     padding: 10px 0;
