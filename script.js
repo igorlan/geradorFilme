@@ -156,7 +156,6 @@ async function start() {
     const normalModeButton = document.getElementById('normalModeButton');
     const terrorModeButton = document.getElementById('terrorModeButton');
 
-    // Adicionar classe 'loading' e desabilitar botões
     normalModeButton.classList.add('loading');
     terrorModeButton.classList.add('loading');
     normalModeButton.disabled = true;
