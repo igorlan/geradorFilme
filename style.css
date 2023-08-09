@@ -458,7 +458,6 @@ button:hover {
     }
 
     footer.disclaimer {
-        position: static;
         margin-top: 90px;
     }
 }
