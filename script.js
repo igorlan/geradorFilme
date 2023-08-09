@@ -1,4 +1,5 @@
 let currentOpenModal = null;
+let optionMovie = 'normal';
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -22,10 +23,19 @@ async function getMovies() {
     };
 
     try {
-        return fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${randomPage}`, options)
-            .then(response => response.json())
+        const [normalMovies, brMovies] = await Promise.all([
+            optionMovie === "normal"
+                ? fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${randomPage}`, options)
+                    .then(response => response.json())
+                : fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=${randomPage}&sort_by=popularity.desc&with_genres=27&with_origin_country=US`, options)
+                    .then(response => response.json()),
+            fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=${randomPage}&sort_by=popularity.desc&with_genres=27&with_origin_country=BR`, options)
+                .then(response => response.json())
+        ]);
+        const combinedResults = [...normalMovies.results, ...brMovies.results];
+        return combinedResults;
     } catch (error) {
-        alert(error)
+        alert(error);
     }
 }
 
@@ -143,11 +153,20 @@ function minutesToHourMinutesAndSeconds(minutes) {
 
 async function start() {
     const startButton = document.getElementById('button-start');
+    const normalModeButton = document.getElementById('normalModeButton');
+    const terrorModeButton = document.getElementById('terrorModeButton');
+
+    // Adicionar classe 'loading' e desabilitar botões
+    normalModeButton.classList.add('loading');
+    terrorModeButton.classList.add('loading');
+    normalModeButton.disabled = true;
+    terrorModeButton.disabled = true;
     startButton.classList.add('loading');
     startButton.disabled = true;
 
     try {
-        const { results } = await getMovies();
+        const results = await getMovies();
+        console.log(await getMovies())
         const best3 = selectVideos(results).map(async movie => {
             const [info] = await Promise.all([
                 getMoreInfo(movie),
@@ -181,12 +200,26 @@ async function start() {
             poster.addEventListener('click', () => openDetailsModal(output[index].detailsInfo));
         });
 
+        const normalModeButton = document.getElementById('normalModeButton');
+        const terrorModeButton = document.getElementById('terrorModeButton');
+        if (optionMovie === 'normal') {
+            normalModeButton.style.display = 'none';
+            terrorModeButton.style.display = 'block';
+        } else {
+            normalModeButton.style.display = 'block';
+            terrorModeButton.style.display = 'none';
+        }
+
     } catch (error) {
         console.error(error);
         alert('Erro ao carregar os filmes. Por favor, tente novamente.');
     } finally {
         startButton.classList.remove('loading');
         startButton.disabled = false;
+        normalModeButton.classList.remove('loading');
+        terrorModeButton.classList.remove('loading');
+        normalModeButton.disabled = false;
+        terrorModeButton.disabled = false;
     }
 }
 
@@ -261,6 +294,19 @@ function closeDetailsModal() {
     const modal = document.getElementById("detailsModal");
     modal.classList.remove("show");
     currentOpenModal = null;
+}
+
+function toggleMovieMode(mode) {
+    optionMovie = mode;
+
+    if (optionMovie === 'terror') {
+        optionMovie = 'terror';
+        document.body.classList.add('terror-mode');
+    } else {
+        optionMovie = 'normal';
+        document.body.classList.remove('terror-mode');
+    }
+    start();
 }
 
 function openModal(e) {

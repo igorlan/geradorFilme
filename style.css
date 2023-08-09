@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(8deg, rgba(0,0,0,1) 31%, rgba(101,11,86,1) 100%);
+    background: linear-gradient(8deg, rgba(0, 0, 0, 1) 31%, rgba(101, 11, 86, 1) 100%);
     display: flex;
     width: 100%;
     height: 100vh;
@@ -14,6 +14,11 @@ body {
     align-items: center;
     font-family: 'Outfit', sans-serif;
     color: #fff;
+    transition: background 0.2s ease-in;
+}
+
+.terror-mode {
+    background: url('https://wallpaper.dog/large/20491976.jpg');
 }
 
 button {
@@ -23,6 +28,8 @@ button {
 }
 
 .card {
+    opacity: 1;
+    transition: .3s ease-in;
     width: 70%;
     height: 80%;
     display: flex;
@@ -35,29 +42,7 @@ button {
     padding: 64px 96px;
     position: relative;
     margin: auto;
-}
-
-@media (max-width: 600px) {
-    .card {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        padding: 0;
-        padding-bottom: 90px;
-    }
-
-    body>.card::before {
-        content: none;
-    }
-
-    .container {
-        width: 100vw;
-    }
-
-    .modal-content {
-        width: 90vw !important;
-        height: 90vh !important;
-    }
+    transition: background 0.2s ease-in;
 }
 
 .card::before {
@@ -72,6 +57,16 @@ button {
     transform: translate(-50%, -50%);
     border-radius: 16px;
     z-index: -1;
+}
+
+body.terror-mode .card::before {
+    opacity: .7;
+    background: rgb(0, 0, 0);
+}
+
+body.terror-mode .card {
+    opacity: .7;
+    background: rgb(104, 1, 1);
 }
 
 .container {
@@ -206,7 +201,6 @@ button {
 }
 
 .modal {
-    /* display: none; */
     position: fixed;
     z-index: 10;
     left: 0;
@@ -420,8 +414,44 @@ button:hover {
     height: auto;
 }
 
-/* Outros estilos que você já tem */
 .producters img {
     width: 40px;
     height: auto;
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 0;
+        padding-bottom: 90px;
+    }
+
+    body>.card::before {
+        content: none;
+    }
+
+    .container {
+        width: 100vw;
+    }
+
+    .modal-content {
+        width: 90vw !important;
+        height: 90vh !important;
+    }
+
+    body.terror-mode .card {
+        background: #1E1F28 !important;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px;
+    }
+    
+    header button {
+        margin-top: 20px;
+    }
 }

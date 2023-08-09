@@ -24,17 +24,16 @@
                     <p>Nova Reccomendação</p>
                     <img src="./assets/Gerar.png" alt="">
                 </button>
+
+                <div class="toggle-buttons">
+                    <button id="normalModeButton" onclick="toggleMovieMode('normal')">Modo Normal</button>
+                    <button id="terrorModeButton" onclick="toggleMovieMode('terror')">Modo Terror</button>
+                </div>
             </header>
 
             <section class="movies">
             </section>
 
-        </div>
-        <div class="disclaimer">
-            <p>A idéia do projeto é gerar 3 recomendações extremamente aleatórias baseada em NADA, com a opção de você
-                assistir o filme completo ou ver o trailer.
-                <br><br>(Alguns filmes devem funcionar apenas trailer) - Igor Lansarotto
-            </p>
         </div>
     </section>
     <div id="filmeModal" class="modal">
@@ -53,5 +52,10 @@
     </div>
 
 </body>
-
+<footer class="disclaimer">
+    <p>A idéia do projeto é gerar 3 recomendações extremamente aleatórias baseada em NADA, com a opção de você
+        assistir o filme completo ou ver o trailer.
+        <br><br>(Alguns filmes devem funcionar apenas trailer) - Igor Lansarotto
+    </p>
+</footer>
 </html>
