@@ -24,7 +24,7 @@ body {
 }
 
 .terror-mode {
-    background: url('https://wallpaper.dog/large/20491976.jpg');
+    background: url('./assets/samara.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -47,7 +47,6 @@ button {
     border-radius: 16px;
     background: var(--cores-cinza-dark, #1E1F28);
     box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
-    padding: 64px 96px;
     position: relative;
     margin: auto;
     transition: background 0.2s ease-in;
