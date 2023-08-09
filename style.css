@@ -7,6 +7,7 @@
 }
 
 body {
+    margin: 0;
     overflow-x: hidden;
     background: linear-gradient(8deg, rgba(0, 0, 0, 1) 31%, rgba(101, 11, 86, 1) 100%);
     display: flex;
@@ -421,6 +422,16 @@ button:hover {
     height: auto;
 }
 
+footer.disclaimer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #fff;
+}
+
 @media (max-width: 600px) {
     .card {
         width: 100%;
@@ -455,9 +466,5 @@ button:hover {
 
     header button {
         margin-top: 20px;
-    }
-
-    footer.disclaimer {
-        margin-top: 90px;
     }
 }
