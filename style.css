@@ -302,7 +302,8 @@ iframe {
     right: 0;
     bottom: 0;
     z-index: 999 !important;
-    width: 100% !important;
+    overflow: auto;
+    /* width: 100% !important; */
     height: 100% !important;
 }
 
@@ -436,12 +437,19 @@ footer.disclaimer {
 }
 
 @media (max-width: 600px) {
+
+    .modal-content, #detailsContent {
+        height: 75vh !important;
+        width: 85vw !important;
+        transform: translate(-50%, -60%);
+    }
+
     .card {
         width: 100%;
         height: 100%;
         border-radius: 0;
         padding: 0;
-        padding-bottom: 90px;
+        /* padding-bottom: 90px; */
     }
 
     body>.card::before {
@@ -450,11 +458,6 @@ footer.disclaimer {
 
     .container {
         width: 100vw;
-    }
-
-    .modal-content {
-        width: 90vw !important;
-        height: 90vh !important;
     }
 
     body.terror-mode .card {
@@ -469,5 +472,9 @@ footer.disclaimer {
 
     header button {
         margin-top: 20px;
+    }
+
+    .disclaimer {
+        display: none;
     }
 }
