@@ -6,6 +6,7 @@
 }
 
 body {
+    padding-bottom: 80px;
     background: linear-gradient(8deg, rgba(0, 0, 0, 1) 31%, rgba(101, 11, 86, 1) 100%);
     display: flex;
     width: 100%;
