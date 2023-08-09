@@ -7,7 +7,7 @@
 }
 
 body {
-    /* padding-bottom: 80px; */
+    overflow-x: hidden;
     background: linear-gradient(8deg, rgba(0, 0, 0, 1) 31%, rgba(101, 11, 86, 1) 100%);
     display: flex;
     width: 100vw;
@@ -207,8 +207,8 @@ button {
     z-index: 10;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     visibility: hidden;
@@ -452,8 +452,13 @@ button:hover {
         align-items: center;
         padding: 0 16px;
     }
-    
+
     header button {
         margin-top: 20px;
+    }
+
+    footer.disclaimer {
+        position: static;
+        margin-top: 90px;
     }
 }
