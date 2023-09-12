@@ -165,7 +165,6 @@ async function start() {
 
     try {
         const results = await getMovies();
-        console.log(await getMovies())
         const best3 = selectVideos(results).map(async movie => {
             const [info] = await Promise.all([
                 getMoreInfo(movie),
@@ -313,7 +312,7 @@ function openModal(e) {
     const movie_id = e.currentTarget ? e.currentTarget.dataset.id : e
     const modal = document.getElementById("filmeModal");
     const iframe = document.getElementById("trailerIframe");
-    iframe.src = `https://embed.warezcdn.net/filme/${movie_id}`;
+    iframe.src = `https://embed.warezcdn.com/filme/${movie_id}`;
     modal.classList.add("show");
     currentOpenModal = "filmeModal";
 }
