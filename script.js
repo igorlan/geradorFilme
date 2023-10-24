@@ -74,9 +74,9 @@ async function verTrailer(e) {
             .then(response => response.json())
         const { results } = data
         const youtubeVideo = results.find(video => video.type === "Trailer")
-        window.open(`https://youtube.com/watch?v=${youtubeVideo.key}`, 'blank')
+        window.open(`https://youtube.com/watch?v=${youtubeVideo?.key}`, 'blank')
     } catch (error) {
-        alert(error)
+        alert("Não há trailer!")
     } finally {
         button.classList.remove('loading');
         button.disabled = false;
@@ -307,15 +307,44 @@ function toggleMovieMode(mode) {
     start();
 }
 
-function openModal(e) {
+async function openModal(e) {
     closeCurrentOpenModal();
     const movie_id = e.currentTarget ? e.currentTarget.dataset.id : e
+    let youtubeVideo;
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMDg3MjU1NTZmZmM4NzE3YzVkZGNlZGU5YTlmNzc0OSIsInN1YiI6IjY0ZDJkZTk2YmYzMWYyMDFjZTY2NzdmZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._idTsTHBFWo_SmOzGtzD86966z4ELuWUMWVc9BqnH44'
+        }
+    };
+
+    try {
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?language=en-US`, options)
+            .then(response => response.json())
+        const { results } = data
+        youtubeVideo = results.find(video => video.type === "Trailer")
+    } catch (error) {
+        alert("Não há trailer!")
+    }
+
     const modal = document.getElementById("filmeModal");
     const iframe = document.getElementById("trailerIframe");
-    iframe.src = `https://embed.warezcdn.net/filme/${movie_id}`;
+    iframe.src = `https://www.youtube.com/embed/${youtubeVideo?.key}`;
     modal.classList.add("show");
     currentOpenModal = "filmeModal";
 }
+
+// Função Antiga para assistir o filme.
+// function openModal(e) {
+//     closeCurrentOpenModal();
+//     const movie_id = e.currentTarget ? e.currentTarget.dataset.id : e
+//     const modal = document.getElementById("filmeModal");
+//     const iframe = document.getElementById("trailerIframe");
+//     iframe.src = `https://embed.warezcdn.net/filme/${movie_id}`;
+//     modal.classList.add("show");
+//     currentOpenModal = "filmeModal";
+// }
 
 function closeModal() {
     const modal = document.getElementById("filmeModal");
