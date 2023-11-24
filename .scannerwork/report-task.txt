@@ -1,0 +1,7 @@
+organization=igorlan
+projectKey=igorlan_geradorFilme
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.50887
+dashboardUrl=https://sonarcloud.io/dashboard?id=igorlan_geradorFilme
+ceTaskId=AYwBu3wskC4yLMt5iMha
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYwBu3wskC4yLMt5iMha
